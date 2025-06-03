@@ -1,0 +1,18 @@
+% latex table generated in R 4.4.1 by xtable 1.8-4 package
+% Tue May 20 09:39:31 2025
+\begin{table}[ht]
+\centering
+\begin{tabular}{lll}
+  \hline
+parameter & estimate & model \\ 
+  \hline
+Precision for space\_id & 5.87399 (5.27901, 6.52436) & Zero Distribution \\ 
+  Phi for space\_id & 0.60357 (0.52012, 0.6805) & Zero Distribution \\ 
+  Precision for year\_id & 228.19163 (134.93383, 603.18605) & Zero Distribution \\ 
+  Precision for spaceYear\_id & 85.94641 (47.07907, 165.39173) & Zero Distribution \\ 
+  Beta for space\_id & 0.47715 (0.43257, 0.52299) & Count Distribution \\ 
+  Beta for year\_id & 0.43768 (0.33742, 0.53815) & Count Distribution \\ 
+  Beta for spaceYear\_id & 1.42572 (0.95891, 1.85942) & Count Distribution \\ 
+   \hline
+\end{tabular}
+\end{table}

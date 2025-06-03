@@ -1,0 +1,29 @@
+% latex table generated in R 4.4.1 by xtable 1.8-4 package
+% Tue May 20 06:18:53 2025
+\begin{table}[ht]
+\centering
+\begin{tabular}{lll}
+  \hline
+model.component & model & estimate \\ 
+  \hline
+full & Zero Distribution & 100 (100, 100) \\ 
+  fixed & Zero Distribution & 36.2853 (32.3961, 40.3672) \\ 
+  random & Zero Distribution & 76.0996 (73.3319, 78.5917) \\ 
+  random.spatial & Zero Distribution & 64.2039 (60.5989, 67.8994) \\ 
+  random.temporal & Zero Distribution & 6.5858 (5.3857, 7.8822) \\ 
+  random.spatiotemporal & Zero Distribution & 5.3739 (2.3352, 8.4573) \\ 
+  full & Count Distribution & 100 (100, 100) \\ 
+  fixed & Count Distribution & 44.9621 (35.9372, 54.5552) \\ 
+  random & Count Distribution & 62.4269 (54.1602, 69.6373) \\ 
+  random.spatial & Count Distribution & 33.9141 (26.5613, 42.8828) \\ 
+  random.temporal & Count Distribution & 2.9681 (1.9103, 4.3258) \\ 
+  random.spatiotemporal & Count Distribution & 25.7956 (12.169, 39.0287) \\ 
+  full & Both & 100 (100, 100) \\ 
+  fixed & Both & 38.9514 (34.5441, 43.4029) \\ 
+  random & Both & 71.9502 (68.9375, 74.7367) \\ 
+  random.spatial & Both & 55.1265 (49.864, 60.0993) \\ 
+  random.temporal & Both & 5.5053 (4.5772, 6.6084) \\ 
+  random.spatiotemporal & Both & 11.6724 (5.5278, 18.7386) \\ 
+   \hline
+\end{tabular}
+\end{table}

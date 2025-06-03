@@ -1,0 +1,21 @@
+% latex table generated in R 4.4.1 by xtable 1.8-4 package
+% Tue May 27 15:52:43 2025
+\begin{table}[ht]
+\centering
+\begin{tabular}{ll}
+  \hline
+RGN21NM & estimate \\ 
+  \hline
+North East & 1.1448 (1.1137, 1.1753) \\ 
+  North West & 1.1142 (1.0918, 1.1349) \\ 
+  South West & 1.0976 (1.0747, 1.1218) \\ 
+  Yorkshire and The Humber & 1.04 (1.0179, 1.0616) \\ 
+  West Midlands & 0.9839 (0.9617, 1.0078) \\ 
+  East Midlands & 0.9821 (0.9571, 1.0069) \\ 
+  South East & 0.9755 (0.9583, 0.9947) \\ 
+  East of England & 0.9511 (0.9298, 0.9711) \\ 
+  London & 0.8226 (0.8049, 0.8405) \\ 
+  England & 0.9959 (0.9879, 1.0033) \\ 
+   \hline
+\end{tabular}
+\end{table}

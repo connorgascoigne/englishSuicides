@@ -1,0 +1,11 @@
+% latex table generated in R 4.4.1 by xtable 1.8-4 package
+% Wed Jan 29 14:03:31 2025
+\begin{table}[ht]
+\centering
+\begin{tabular}{ll}
+  \hline
+MSOA11CD & MSOA11NM \\ 
+  \hline
+\hline
+\end{tabular}
+\end{table}

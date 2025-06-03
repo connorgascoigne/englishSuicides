@@ -1,0 +1,80 @@
+% latex table generated in R 4.4.2 by xtable 1.8-4 package
+% Sun May 18 11:22:38 2025
+\begin{table}[ht]
+\centering
+\begin{tabular}{llr}
+  \hline
+MSOA11CD & MSOA11NM & DATE \\ 
+  \hline
+E02003519 & Brighton and Hove 029 & 11149.00 \\ 
+  E02003519 & Brighton and Hove 029 & 11181.00 \\ 
+  E02003519 & Brighton and Hove 029 & 11261.00 \\ 
+  E02002635 & Blackpool 003 & 11483.00 \\ 
+  E02002638 & Blackpool 006 & 11483.00 \\ 
+  E02003518 & Brighton and Hove 028 & 11483.00 \\ 
+  E02003519 & Brighton and Hove 029 & 11704.00 \\ 
+  E02003518 & Brighton and Hove 028 & 11752.00 \\ 
+  E02003519 & Brighton and Hove 029 & 11752.00 \\ 
+  E02003519 & Brighton and Hove 029 & 11912.00 \\ 
+  E02003519 & Brighton and Hove 029 & 12245.00 \\ 
+  E02003519 & Brighton and Hove 029 & 12309.00 \\ 
+  E02003519 & Brighton and Hove 029 & 12610.00 \\ 
+  E02003518 & Brighton and Hove 028 & 12626.00 \\ 
+  E02003519 & Brighton and Hove 029 & 12626.00 \\ 
+  E02003516 & Brighton and Hove 026 & 12674.00 \\ 
+  E02003518 & Brighton and Hove 028 & 12674.00 \\ 
+  E02003519 & Brighton and Hove 029 & 12674.00 \\ 
+  E02003519 & Brighton and Hove 029 & 12754.00 \\ 
+  E02003518 & Brighton and Hove 028 & 12928.00 \\ 
+  E02003519 & Brighton and Hove 029 & 12928.00 \\ 
+  E02003519 & Brighton and Hove 029 & 13040.00 \\ 
+  E02003519 & Brighton and Hove 029 & 13165.00 \\ 
+  E02003518 & Brighton and Hove 028 & 13197.00 \\ 
+  E02003516 & Brighton and Hove 026 & 13277.00 \\ 
+  E02003519 & Brighton and Hove 029 & 13277.00 \\ 
+  E02003516 & Brighton and Hove 026 & 13562.00 \\ 
+  E02003518 & Brighton and Hove 028 & 13562.00 \\ 
+  E02003519 & Brighton and Hove 029 & 13658.00 \\ 
+  E02003519 & Brighton and Hove 029 & 13802.00 \\ 
+  E02003519 & Brighton and Hove 029 & 13818.00 \\ 
+  E02003519 & Brighton and Hove 029 & 13866.00 \\ 
+  E02003516 & Brighton and Hove 026 & 13959.00 \\ 
+  E02003519 & Brighton and Hove 029 & 13959.00 \\ 
+  E02003519 & Brighton and Hove 029 & 14103.00 \\ 
+  E02003519 & Brighton and Hove 029 & 14261.00 \\ 
+  E02006879 & Shepway 014 & 14389.00 \\ 
+  E02003516 & Brighton and Hove 026 & 14549.00 \\ 
+  E02006879 & Shepway 014 & 14818.00 \\ 
+  E02003519 & Brighton and Hove 029 & 14962.00 \\ 
+  E02003519 & Brighton and Hove 029 & 15167.00 \\ 
+  E02003545 & Portsmouth 022 & 15279.00 \\ 
+  E02003519 & Brighton and Hove 029 & 15436.00 \\ 
+  E02003519 & Brighton and Hove 029 & 15644.00 \\ 
+  E02003545 & Portsmouth 022 & 15692.00 \\ 
+  E02003519 & Brighton and Hove 029 & 15786.00 \\ 
+  E02003519 & Brighton and Hove 029 & 15930.00 \\ 
+  E02003519 & Brighton and Hove 029 & 15962.00 \\ 
+  E02003519 & Brighton and Hove 029 & 16199.00 \\ 
+  E02003518 & Brighton and Hove 028 & 16660.00 \\ 
+  E02003519 & Brighton and Hove 029 & 16660.00 \\ 
+  E02003519 & Brighton and Hove 029 & 16676.00 \\ 
+  E02003519 & Brighton and Hove 029 & 17073.00 \\ 
+  E02006879 & Shepway 014 & 17183.00 \\ 
+  E02003519 & Brighton and Hove 029 & 17375.00 \\ 
+  E02003519 & Brighton and Hove 029 & 17455.00 \\ 
+  E02003519 & Brighton and Hove 029 & 17471.00 \\ 
+  E02003519 & Brighton and Hove 029 & 17692.00 \\ 
+  E02003519 & Brighton and Hove 029 & 17820.00 \\ 
+  E02003519 & Brighton and Hove 029 & 17868.00 \\ 
+  E02003518 & Brighton and Hove 028 & 17884.00 \\ 
+  E02003519 & Brighton and Hove 029 & 17897.00 \\ 
+  E02003545 & Portsmouth 022 & 18009.00 \\ 
+  E02003518 & Brighton and Hove 028 & 18454.00 \\ 
+  E02003516 & Brighton and Hove 026 & 18518.00 \\ 
+  E02003519 & Brighton and Hove 029 & 18518.00 \\ 
+  E02003519 & Brighton and Hove 029 & 18614.00 \\ 
+  E02003519 & Brighton and Hove 029 & 18900.00 \\ 
+  E02006879 & Shepway 014 & 19105.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
