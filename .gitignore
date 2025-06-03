@@ -1,0 +1,60 @@
+# R-specific ignores
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+.Rproj.user
+*.Rproj
+.Renviron
+.Rprofile
+.Rbuildignore
+
+# Compiled files
+*.o
+*.so
+*.dll
+
+# Package builds
+*.tar.gz
+
+# Caches
+__pycache__/
+*.py[cod]
+*.rds
+*.rda
+
+# R Markdown and notebooks
+*.utf8.md
+*.knit.md
+*.nb.html
+*.pdf
+
+# VSCode
+.vscode/
+
+# Mac and OS files
+.DS_Store
+Thumbs.db
+
+# Exclude specific directories
+administration/
+manuscript/
+data/
+fromServer/
+presentations/
+
+# Ignore any folder named with these anywhere in the repo
+eps/
+*/eps/
+**/eps/
+*.eps
+lsoa/
+*/lsoa/
+**/lsoa/
+lad/
+*/lad/
+**/lad/
+
+# Ignore all folders starting with zzz_ (temporary/testing/old)
+**/zzz_*/
