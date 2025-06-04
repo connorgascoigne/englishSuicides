@@ -70,26 +70,9 @@ colours.sequential <- c('#E9E0C8', '#4B0082')
 
 ## 0.6. import ----
 
-### 0.6.1. railways (download or load) ----
+### 0.6.1. railways load ----
 
 setwd(dir.masterData.railway)
-
-# all railways
-website.details.all <- read.csv('https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv')
-railway.urls <- paste0('https://biogeo.ucdavis.edu/data/diva/rrd/', website.details.all$alpha.3, '_rrd.zip')
-
-if(length(list.files(pattern = 'GBR_rails', full.names = TRUE)) == 0){
-  
-  # download files
-  lapply(railway.urls, 
-         function(x){ tryCatch({ download.file(url = x, destfile = basename(x)) }, error = function(e) { result <- NA }) })
-  
-  # unzip files
-  railways.zipped <- list.files(pattern = '.zip')
-  lapply(railways.zipped, 
-         function(x){unzip(x); files.remove(x)})
-  
-}
 
 railways.all <- 
   sf::st_read(dsn = dir.masterData.railway, layer = 'GBR_rails') %>%

@@ -87,33 +87,12 @@ colours.sequential <- c('#E9E0C8', '#4B0082')
 
 ## 0.6. import ----
 
-### 0.6.1. nighttime light (import or load)
+### 0.6.1. nighttime light (import or load) ----
 
 setwd(dir.masterData.ntl)
 
-# all nightime lights 
-website.call <- rfigshare::fs_details('9828827', mine = F, session = NULL)
-website.details.all <- jsonlite::fromJSON(jsonlite::toJSON(website.call$files), flatten = T)
-
-# download files
-ntl.urls <- 
-  website.details.all %>% 
-  dplyr::mutate(download = paste0(download_url, '/', name),
-                year = name %>% stringr::str_replace_all(., '[^0-9]', '')) %>% 
-  dplyr::filter(name != 'DN_NTL_2013_simVIIRS.tif') %>% 
-  dplyr::arrange(year) %>% 
-  dplyr::pull(download)
-
-ntl.file.names.website <- basename(ntl.urls)
-ntl.file.names.local <- list.files(pattern = '.tif')
-
-if(!dplyr::setequal(ntl.file.names.website, ntl.file.names.local)){
-  # download
-  lapply(ntl.urls, 
-         function(x){ tryCatch({ download.file(url = x, destfile = basename(x), mode = 'wb') }, error = function(e) { result <- NA }) })
-}
-
 # import all files
+ntl.file.names.local <- list.files(pattern = '.tif')
 ntl.rasters <- lapply(X = ntl.file.names.local, FUN = terra::rast)
 year.min <- 1992
 year.max <- 2022

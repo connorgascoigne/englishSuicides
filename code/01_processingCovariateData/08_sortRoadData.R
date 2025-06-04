@@ -70,7 +70,7 @@ colours.sequential <- c('#E9E0C8', '#4B0082')
 
 ## 0.6. import ----
 
-### 0.6.1. roads (download or load) ----
+### 0.6.1. roads load ----
 
 setwd(dir.masterData.road)
 
