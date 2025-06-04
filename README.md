@@ -89,14 +89,17 @@ The spatial resolution of the analysis was the Middle layer Super Output Area (M
 
 ### 📁 Folder Structure
 
+```{bash}
 englishSuicides/
 ├── 📁 code/             # All R code files
 ├── 📁 results/          # All generated results
 ├── 📄 .gitignore        # Git tracking rules
 └── 📄 README.md         # Project overview
+```
 
 ### 🧠 Code Folder (`code/`)
 
+```{bash}
 code/
 ├── 📁 00_simulatingData/
 │   ├── 📄 01_suicideSimulation.R
@@ -120,9 +123,11 @@ code/
 ├── 📁 03_mainResults/
 │   └── 📄 01_generateResults.R
 └── 📄 00_functions.R
+```
 
 ### 📊 Results Folder (`results/`)
 
+```{bash}
 results/
 ├── 📁 01_covariateData/
 │   ├── 📁 gif/
@@ -146,3 +151,4 @@ results/
 │   │   └── 🖼️ [Model Result Figures]
 │   └── 📁 txt/
 │       └── 📜 [Parameter & Summary Outputs]
+```
