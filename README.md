@@ -4,21 +4,16 @@
 
 ### Project description
 
-### Running the code
-
+### 🔧 Running the Code
 In general, all code-related files are designed to be as automated as possible. However, a few manual steps are required to get everything working after cloning the repository.
 
----
+1. 📦 Installing Required Packages
+Each `.R` file includes a section titled `## 0.1. packages`. This section will attempt to load or install the necessary `R` packages.
 
-#### 1. Installing Required Packages
+🧠 Note: One package, `R-INLA`, is not on CRAN and requires a custom installation.
 
-Each `.R` file includes a section titled `## 0.1. packages`. This section will attempt to load or install the necessary R packages.
-
-**Note:** One package—`R-INLA`—is *not on CRAN* and requires a custom installation.
-
-Use the following code to install `R-INLA`:
-
-```r
+Use the following code to install R-INLA:
+'''{r}
 if (!require('INLA')) {
   install.packages(
     'INLA',
@@ -26,12 +21,69 @@ if (!require('INLA')) {
     dependencies = TRUE
   )
 }
+'''
+If installation issues occur, please consult the [R-INLA Download & Install guide](https://www.r-inla.org/download-install).
+
+2. 📁 Fixing the Working Directory
+Each `.R` script contains a section titled` ## 0.2. directories`. The working directory is determined using:
+'''{r}
+dir.path <- rstudioapi::getActiveDocumentContext()$path
+'''
+This works only in RStudio (and only if the file is saved). Then, the root directory is extracted using:
+'''{r}
+dir.home <- sub('(englishSuicides).*', '\\1', dir.path)
+'''
+📝 Action Required: If you've renamed the englishSuicides folder, update "englishSuicides" in the line above to match your local folder name.
+
+3. 📂 Providing the Master Dataset
+Within the `## 0.2.` directories section in each `.R` file, another directory is referenced to access the required external source data (e.g., mid-year population, IMD, etc.). This folder is not included in the repository.
+
+This is defined as:
+'''{r}
+dir.masterData <- paste0(sub('(OneDrive - Imperial College London).*', '\\1', dir.path), '/00_masterData')
+'''
+📥 Action Required: Download the necessary data and store it in the above folder path on your local machine.
 
 
-### Data sources
+### 🗂️ Data Sources
+
+📄 Data Type	🌐 Source	🏷️ Naming Convention	📝 Note
+🗺️ Spatial polygons (LSOA11)	ONS	`ONS11_LSOA`	-
+🗺️ Spatial polygons (MSOA11)	ONS	`ONS11_MSOA`	-
+🗺️ Spatial polygons (LAD11)	ONS	`ONS11_LAD`	-
+🗺️ Spatial polygons (NAT21)	ONS (link missing)	`ONS21_NAT`	-
+🔁 Look up LSOA01 → LSOA11	ONS	`LSOA01_LSOA11_LAD11_lookUp`	-
+🔁 Look up LSOA11 → LSOA21	ONS	`LSOA11_LSOA21_LAD22_lookUp`	-
+🔁 Look up LSOA11 → MSOA11 → LAD11	ONS	LSOA11_MSOA11_LAD11_lookUp	-
+👥 Mid-year population estimates	ONS	See` 02_sortPopulationData.`R	Located in` code/01_processingCovariateData`/
+🏚️ Index of Multiple Deprivation (IMD)	GOV.UK	`See 03_sortIMDdata.R`	Located in `code/01_processingCovariateData/`
+🧾 Ethnicity Population Total (2001)	ONS Nomis`	2001_lsoa_ethnicDiversit`y	-
+🧾 Ethnicity Population Total (2011)	ONS Nomis`	2011_lsoa_ethnicDiversit`y	-
+🧾 Ethnicity Population Total (2021)	ONS Nomis`	2021_lsoa_ethnicDiversit`y	-
+🌌 Nighttime Light	Figshare (DMSP & VIIRS)	As downloaded	See related paper
+🚉 Railway network	OpenStreetMap	As downloaded	-
+🛣️ Road network	Ordnance Survey	As downloaded	Requires free OS account
+🛰️ NDVI (vegetation index)	NASA Earth Data via MODIStsp	As downloaded	Requires free NASA EarthData account
 
 
 
+Data type; Source; Naming Convention; Note
+Spatial polygons (LSOA11); [ONS](https://geoportal.statistics.gov.uk/datasets/357ee15b1080431491bf965394090c72_0/explore); ONS11_LSOA; -
+Spatial polygons (MSOA11); [ONS](https://geoportal.statistics.gov.uk/datasets/8200e7683bba4de8a1a47e6b1c323099_0/explore); ONS11_MSOA; -
+Spatial polygons (LAD11); [ONS](https://geoportal.statistics.gov.uk/datasets/8019e36335064f43ae8f199cb4310fa3_0/explore); ONS11_LAD; -
+Spatial polygons (NAT21); [ONS](https://geoportal.statistics.gov.uk/search?q=BDY_CTRY%20DEC_2021&sort=Title%7Ctitle%7Casc); ONS21_NAT; -
+Look up LSOA01-LSOA11;[ONS](https://geoportal.statistics.gov.uk/datasets/3dd1bc5dd053426aa84a068c7afbb3b2_0/explore); LSOA01_LSOA11_LAD11_lookUp;-
+Look up LSOA11-LSOA21; [ONS](https://geoportal.statistics.gov.uk/datasets/b14d449ba10a48508bd05cd4a9775e2b_0/explore); LSOA11_LSOA21_LAD22_lookUp; -
+Look up LSOA11-MSOA11-LAD11; [ONS](https://geoportal.statistics.gov.uk/datasets/d382604321554ed49cc15dbc1edb3de3_0/explore); LSOA11_MSOA11_LAD11_lookUp; -
+Mid-year population estimates; [ONS](https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/lowersuperoutputareamidyearpopulationestimates); See 📄 code/01_processingCovariateData/02_sortPopulationData.R; -
+Index of Multiple Deprivaton; [GOV.UK](https://www.gov.uk/government/collections/english-indices-of-deprivation); See 📄 code/01_processingCovariateData/03_sortIMDdata.R; -
+Ethnicity Population Total (2001); [ONS Nomis](https://www.nomisweb.co.uk/datasets/ks006); 2001_lsoa_ethnicDiversity; - 
+Ethnicity Population Total (2011); [ONS Nomis](https://www.nomisweb.co.uk/census/2011/ks201ew); 2011_lsoa_ethnicDiversity; - 
+Ethnicity Population Total (2021); [ONS Nomis](https://www.nomisweb.co.uk/datasets/c2021ts021); 2021_lsoa_ethnicDiversity; - 
+Nighttime Light; [Harmonization of DMSP and VIIRS nighttime light data](https://figshare.com/articles/dataset/Harmonization_of_DMSP_and_VIIRS_nighttime_light_data_from_1992-2018_at_the_global_scale/9828827); As downloaded; See the [paper](https://www.nature.com/articles/s41597-020-0510-y)
+Railway network; [OpenStreetMap](https://download.geofabrik.de/); As downloaded; -
+Road network; [Ordance Survery (OS)](https://osdatahub.os.uk/downloads/open/OpenRoads); As downloaded; Requires free OS account
+NDVI; [NASA Earth Data via MODIStsp](https://docs.ropensci.org/MODIStsp/); As downloaded; Requires free NASA Eath Data account
 
 
 ### Repository Structure
