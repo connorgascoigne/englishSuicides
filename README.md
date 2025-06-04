@@ -13,7 +13,7 @@ Each `.R` file includes a section titled `## 0.1. packages`. This section will a
 🧠 Note: One package, `R-INLA`, is not on CRAN and requires a custom installation.
 
 Use the following code to install R-INLA:
-'''{r}
+```{r}
 if (!require('INLA')) {
   install.packages(
     'INLA',
@@ -21,27 +21,27 @@ if (!require('INLA')) {
     dependencies = TRUE
   )
 }
-'''
+```
 If installation issues occur, please consult the [R-INLA Download & Install guide](https://www.r-inla.org/download-install).
 
 2. 📁 Fixing the Working Directory
 Each `.R` script contains a section titled` ## 0.2. directories`. The working directory is determined using:
-'''{r}
+```{r}
 dir.path <- rstudioapi::getActiveDocumentContext()$path
-'''
+```
 This works only in RStudio (and only if the file is saved). Then, the root directory is extracted using:
-'''{r}
+```{r}
 dir.home <- sub('(englishSuicides).*', '\\1', dir.path)
-'''
+```
 📝 Action Required: If you've renamed the englishSuicides folder, update "englishSuicides" in the line above to match your local folder name.
 
 3. 📂 Providing the Master Dataset
 Within the `## 0.2.` directories section in each `.R` file, another directory is referenced to access the required external source data (e.g., mid-year population, IMD, etc.). This folder is not included in the repository.
 
 This is defined as:
-'''{r}
+```{r}
 dir.masterData <- paste0(sub('(OneDrive - Imperial College London).*', '\\1', dir.path), '/00_masterData')
-'''
+```
 📥 Action Required: Download the necessary data and store it in the above folder path on your local machine.
 
 
