@@ -1,6 +1,6 @@
 # Spatio-temporal trends and socio-environmental determinants of suicides in England from 2002 - 2022: an ecological population-based study
 
-This is the GitHub repository for the paper. Here we provide the code used to perform a spatio-temporal analysis
+This is the GitHub repository for the paper.
 
 ------------------------------------------------------------------------
 
@@ -54,11 +54,7 @@ This is defined as:
 dir.masterData <- paste0(sub('(OneDrive - Imperial College London).*', '\\1', dir.path), '/00_masterData')
 ```
 
-📥 Action Required: Download the necessary data (see Data Sources below) and store it in the above folder path on your local machine.
-
-#### 🗺 Additional spatial levels
-
-The spatial resolution of the analysis was the Middle layer Super Output Area (MSOA). However, when organising the covariates (files located in 📁 `code/01_processingCovariateData`), we have included code that produced each at the Lower layer Super Output Area (LSOA) and Local Authority District (LAD) area as well. For the analysis of suicides in England from 2002 to 2022, these parts of the code can be ignored.
+📥 Action Required: Download the necessary data (see [🗂️ Data Sources] below) and store it in the above folder path on your local machine.
 
 ------------------------------------------------------------------------
 
@@ -91,11 +87,14 @@ The spatial resolution of the analysis was the Middle layer Super Output Area (M
 
 ```{bash}
 englishSuicides/
-├── 📁 code/             # All R code files
-├── 📁 results/          # All generated results
-├── 📄 .gitignore        # Git tracking rules
-└── 📄 README.md         # Project overview
+├── 📁 code/             # all R code files
+├── 📁 data/             # all data
+├── 📁 results/          # all generated results
+├── 📄 .gitignore        # git tracking rules
+└── 📄 README.md         # project overview
 ```
+
+The overall structure of the repository is to have separate folders for the code, data (which we do not have as we cannot share) and results. Below we describe the files in the `code/` and `results/` folders.
 
 ### 🧠 Code Folder (`code/`)
 
@@ -125,6 +124,28 @@ code/
 └── 📄 00_functions.R
 ```
 
+When running the code, please run each file following the order above as some files depend on others to be run first, i.e., 📄 `03_sortIMDdata.R` requires the results of 📄 `02_sortPopulationData.R`.
+
+##### 📁 `00_simulatingData/`
+
+As we are unable to share the data, the files here simulate the suicide, population and covariate data. Once these data have been simulated and saved, run only 📄 `01_sortSpatialData.R` from the 📁 `01_processingCovariateData/` folder, and then proceed to 📁 `02_processingSuicideData/`.
+
+📝 Action Required: If you're simulating data, then make sure you have the right files being called in all files inside the folders 📁 `02_processingSuicideData/` and 📁 `03_mainResults/`.
+
+#### 📁 `01_processingCovariateData/`
+
+In this folder, we are orgnaising all the non-suicide related data. The sources for all the data can be found in the table in [🗂️ Data Sources]. Only the file 📄 `01_sortSpatialData.R`, which organises the spatial data for the modelling, needs to be run if the simulated data is being used. The naming convection of the files describes what data is being sorted. Remember, make sure these files are run in order due to dependencies.
+
+🗺 Additional spatial levels: The spatial resolution of the analysis was the Middle layer Super Output Area (MSOA). However, when organising the covariates (files located in 📁 `code/01_processingCovariateData`), we have included code that produced each at the Lower layer Super Output Area (LSOA) and Local Authority District (LAD) area as well. For the analysis of suicides in England from 2002 to 2022, these parts of the code can be ignored.
+
+#### 📁 `02_processingSuicideData/`
+
+The suicide data from the ONS (and the simulated suicide data) comes aggregated by year, month, LSOA, age, and sex.
+
+The file 📄 `01_sortSuicideData.R` takes the extract suicide data and i) aggregates into year, MSOA, age and sex, ii) performs the age-sex standardisation to format the data into year and MSOA only, and iii) joins the covariates data onto it. Once the covariates are joined to the suicide data, they can be explored to understand the format.
+
+The file 📄 `02_exploreCovariateData.R` produces three main outputs i) histogram for each of the covariates, ii) correlation between each of the covariates and iii) correlation between the suicide counts, the IMD and the domains that make up the IMD.
+
 ### 📊 Results Folder (`results/`)
 
 ```{bash}
@@ -152,3 +173,27 @@ results/
 │   └── 📁 txt/
 │       └── 📜 [Parameter & Summary Outputs]
 ```
+
+##### 📁 `01_covariateData`
+
+This folder stores the figures that explore the covariates.
+
+The 📁 `gif/` folder contains `.gif` files which are animations of the covariates that vary in time. This is to see the spatial and temporal dynamics.
+
+The 📁 `png/` folder contains `.png` files of the the covariates averaged over time. This is to see the spatial pattern, but not the temporal one.
+
+The 📁 `txt/` folder contains `.txt` files which list the spatial areas that needed to be imputed.
+
+For all the folders, there are subs folders for `📁 lsoa/` and `📁 msoa/`. This is due to the code being set up to create outputs at LSOA, MSOA and LAD levels. Furthermore, some covariates (IMD, ethnicity population totals, and population totals) are downloaded at the LSOA level and then are aggregated to the MSOA level. Missing data is imputed at the LSOA level.
+
+##### 📁 `02_suicideData/`
+
+This folder stores the figures that explore the covariates data (i.e., histograms and correlations) once joined to the suicide data.
+
+##### 📁 `03_modelFit/`
+
+This folder stores the results of fitting the model and extracting the posterior distribution. As this may contain elements of the true data, we are unable to share these files due to data governance.
+
+##### 📁 `04_mainResults/`
+
+This folder stores the results of the main analysis that are presented in the paper and the supplementary material.
