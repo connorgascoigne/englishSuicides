@@ -60,7 +60,7 @@ label.month <- 1:12
 label.sex <- 1:2
 label.age <- c('0_4', '5_14', '15_24', '25_34', '35_44', '45_54', '55_64', '65_74', '75_84', '85')
 
-## 1.3. complete data ----
+## 1.2. complete data ----
 
 data.temp <- 
   tidyr::expand_grid(LSOA11CD = label.lsoa,

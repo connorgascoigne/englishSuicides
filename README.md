@@ -102,7 +102,8 @@ The overall structure of the repository is to have separate folders for the code
 code/
 ├── 📁 00_simulatingData/
 │   ├── 📄 01_suicideSimulation.R
-│   └── 📄 02_covariateSimulation.R
+│   └── 📄 02_populationSimulation.R
+│   └── 📄 03_covariateSimulation.R
 ├── 📁 01_processingCovariateData/
 │   ├── 📄 01_sortSpatialData.R
 │   ├── 📄 02_sortPopulationData.R
