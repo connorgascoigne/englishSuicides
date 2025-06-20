@@ -5,6 +5,12 @@
 if(!require('tidyverse')) {
   install.packages('tidyverse', dependencies = TRUE)
 }
+if(!require('xtable')) {
+  install.packages('xtable', dependencies = TRUE)
+}
+if(!require('INLA')) {
+  install.packages('INLA', dependencies = TRUE)
+}
 if(!require('reshape2')) {
   install.packages('reshape2', dep = TRUE)
 }
@@ -15,17 +21,14 @@ if(!require('animation')) {
 ## 0.2. directories ----
 
 # retrieve directories
-## project
-dir.path <- rstudioapi::getActiveDocumentContext()$path
-dir.home <- sub('(englishSuicides).*', '\\1', dir.path)
+code.path <- rstudioapi::getActiveDocumentContext()$path
+dir.home <- sub('(Policy_Evaluation/01b_updatedAnalysis).*', '\\1', code.path)
 dir.code <- paste0(dir.home, '/code')
 dir.data <- paste0(dir.home, '/data')
 dir.res <- paste0(dir.home, '/results')
 dir.data.organised <- paste0(dir.data, '/organised')
-dir.res.covariate <- paste0(dir.res, '/02_suicideData')
-## data
-dir.masterData <- paste0(sub('(OneDrive - Imperial College London).*', '\\1', dir.path), '/00_masterData')
-dir.masterData.spatial <- paste0(dir.masterData, '/onsSpatial')
+dir.data.spatial <- paste0(dir.data, '/spatial')
+dir.res.covariate <- paste0(dir.res, '/01b_covariateSpecification')
 
 ## 0.3. imports ----
 
@@ -634,49 +637,6 @@ ggplot2::ggsave(plot = plot.suicide.cov.corr,
                 height = height)
 ggplot2::ggsave(plot = plot.suicide.cov.corr,
                 filename = 'eps/SUICIDE_COVARAIATE_YEARLY_CORRELATION.eps',
-                device = 'eps',
-                dpi = 1200,
-                width = width, 
-                height = height)
-
-# 4. sd temporal variation -----
-
-## 4.1. data sort ----
-
-sd.time <-
-  data.model %>% 
-  dplyr::summarise(deprivation_id = deprivation_id %>% sd(),
-                   diversity_id = diversity_id %>% sd(),
-                   populationDensity_id = populationDensity_id %>% sd(),
-                   nighttimeLight_id = nighttimeLight_id %>% sd(),
-                   totalRail_id = totalRail_id %>% sd(),
-                   totalRoad_id = totalRoad_id %>% sd(),
-                   ndvi_id = ndvi_id %>% sd(),
-                   .by = 'YEAR') %>% 
-  tidyr::pivot_longer(cols = -YEAR,
-                      names_to = 'covariate',
-                      values_to = 'stdDev') %>% 
-  dplyr::mutate(covariate = covariate %>% factor(., levels = exposure.data.frame$name.inla.id, labels = exposure.data.frame$name.label))
-
-## 4.2. plot ----
-
-plot.sd.time <- 
-  ggplot2::ggplot(data = sd.time, aes(x = covariate, y = stdDev)) +
-  ggplot2::geom_boxplot() +
-  ggplot2::labs(y = 'Standard Deviation') +
-  ggplot2::scale_x_discrete(name = '',
-                            labels = label_wrap_gen(width = 10)) +
-  my.theme(text = ggplot2::element_text(size = text.size))
-
-## 4.3. save ----
-
-setwd(dir.res.covariate)
-ggplot2::ggsave(plot = plot.sd.time,
-                filename = 'png/COVARIATE_TEMPORAL_STD_DEV.png',
-                width = width, 
-                height = height)
-ggplot2::ggsave(plot = plot.sd.time,
-                filename = 'eps/COVARIATE_TEMPORAL_STD_DEV.eps',
                 device = 'eps',
                 dpi = 1200,
                 width = width, 
