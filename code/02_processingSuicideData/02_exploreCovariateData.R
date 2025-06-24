@@ -643,8 +643,29 @@ ggplot2::ggsave(plot = plot.suicide.cov.corr,
 
 ## 4.1. data sort ----
 
+sd.space <-
+  data.model %>% 
+  # 1. take the SD for each MSOA across all years
+  dplyr::summarise(deprivation_id = deprivation_id %>% sd(),
+                   diversity_id = diversity_id %>% sd(),
+                   populationDensity_id = populationDensity_id %>% sd(),
+                   nighttimeLight_id = nighttimeLight_id %>% sd(),
+                   totalRail_id = totalRail_id %>% sd(),
+                   totalRoad_id = totalRoad_id %>% sd(),
+                   ndvi_id = ndvi_id %>% sd(),
+                   .by = 'MSOA11CD') %>% 
+  # organise for name
+  tidyr::pivot_longer(cols = -MSOA11CD,
+                      names_to = 'covariate',
+                      values_to = 'stdDev') %>% 
+  dplyr::mutate(covariate = covariate %>% factor(., levels = exposure.data.frame$name.inla.id, labels = exposure.data.frame$name.label),
+                type = 'spatial') %>% 
+  # drop the MSOA column
+  dplyr::select(-MSOA11CD)
+
 sd.time <-
   data.model %>% 
+  # 1. take the SD for each year across all MSOAs
   dplyr::summarise(deprivation_id = deprivation_id %>% sd(),
                    diversity_id = diversity_id %>% sd(),
                    populationDensity_id = populationDensity_id %>% sd(),
@@ -653,31 +674,44 @@ sd.time <-
                    totalRoad_id = totalRoad_id %>% sd(),
                    ndvi_id = ndvi_id %>% sd(),
                    .by = 'YEAR') %>% 
+  # organise for name
   tidyr::pivot_longer(cols = -YEAR,
                       names_to = 'covariate',
                       values_to = 'stdDev') %>% 
-  dplyr::mutate(covariate = covariate %>% factor(., levels = exposure.data.frame$name.inla.id, labels = exposure.data.frame$name.label))
+  dplyr::mutate(covariate = covariate %>% factor(., levels = exposure.data.frame$name.inla.id, labels = exposure.data.frame$name.label),
+                type = 'temporal') %>% 
+  # drop the year column
+  dplyr::select(-YEAR)
+
+sd.final <-
+  dplyr::bind_rows(sd.time, sd.space) %>% 
+  dplyr::mutate(type = type %>% factor(., 
+                                       levels = c('temporal', 'spatial'), 
+                                       labels = c('Across all MSOAs for a given year\n(variablilty in space)', 
+                                                  'Across all years for given MSOA\n(variablilty in time')))
 
 ## 4.2. plot ----
 
-plot.sd.time <- 
-  ggplot2::ggplot(data = sd.time, aes(x = covariate, y = stdDev)) +
-  ggplot2::geom_boxplot() +
-  ggplot2::labs(y = 'Standard Deviation') +
+plot.sd <- 
+  ggplot2::ggplot(data = sd.final, aes(x = covariate, y = stdDev, group = interaction(type, covariate))) +
+  ggplot2::geom_boxplot(outlier.shape = NA) +
+  # ggplot2::geom_jitter() +
   ggplot2::scale_x_discrete(name = '',
                             labels = label_wrap_gen(width = 10)) +
-  my.theme(text = ggplot2::element_text(size = text.size))
+  ggplot2::scale_y_continuous(name = 'Standard Deviation') +
+  ggplot2::facet_grid(~ type) +
+  my.theme(text = ggplot2::element_text(size = text.size)); plot.sd
 
 ## 4.3. save ----
 
 setwd(dir.res.covariate)
-ggplot2::ggsave(plot = plot.sd.time,
-                filename = 'png/COVARIATE_TEMPORAL_STD_DEV.png',
-                width = width, 
+ggplot2::ggsave(plot = plot.sd,
+                filename = 'png/COVARIATE_STD_DEV.png',
+                width = 2*width, 
                 height = height)
-ggplot2::ggsave(plot = plot.sd.time,
-                filename = 'eps/COVARIATE_TEMPORAL_STD_DEV.eps',
+ggplot2::ggsave(plot = plot.sd,
+                filename = 'eps/COVARIATE_STD_DEV.eps',
                 device = 'eps',
                 dpi = 1200,
-                width = width, 
+                width = 2*width, 
                 height = height)
